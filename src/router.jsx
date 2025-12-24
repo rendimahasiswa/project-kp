@@ -5,7 +5,6 @@ import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Beranda from "./pages/Beranda.jsx";
 import Profil from "./pages/Profil.jsx";
-import Dokumen from "./pages/Dokumen.jsx";  
 export const router = createBrowserRouter
 
 
@@ -16,5 +15,4 @@ export const router = createBrowserRouter
     {path: "/dashboard", element:<Dashboard/>},
     {path: "/beranda", element:<Beranda/>},
     {path: "/profil", element:<Profil/>},
-    {path: "/dokumen", element:<Dokumen/>},
 ]);
