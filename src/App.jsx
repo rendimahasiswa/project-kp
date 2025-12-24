@@ -9,7 +9,6 @@ import Dokumen from "./pages/Dokumen";
 import Content from "./pages/Content";
 import Register from "./pages/Register";
 import RegisterAdmin from "./pages/RegisterAdmin";
-import TtdElektronik from "./pages/TtdElektronik";
 import EditUsers from "./pages/EditUsers";
 import Documents from "./pages/Documents";
 import Upload from "./pages/Upload";
@@ -35,7 +34,6 @@ const router = createBrowserRouter([
       { path: "/dashboard/content", element: <Content /> },
       { path: "/dashboard/profil", element: <Profil /> },
       { path: "/dashboard/dokumen", element: <Dokumen /> },
-      { path: "/dashboard/ttdelektronik", element: <TtdElektronik /> },
       { path: "/dashboard/editusers", element: <EditUsers /> },
       { path: "/dashboard/decrypt", element: <DecryptFile /> },
       { path: "/dashboard/upload", element: <Upload /> },
