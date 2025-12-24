@@ -17,7 +17,7 @@ import DecryptedList from "./pages/DecryptedList";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Signin />,
   },
   { path: "/register", element: <Register /> },
   { path: "/registeradmin", element: <RegisterAdmin /> },
