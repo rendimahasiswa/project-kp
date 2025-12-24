@@ -1,0 +1,392 @@
+import React, { useState } from "react";
+import user from "../assets/user.jpg";
+import dashboard1 from "../assets/dashboard-icon-01.svg";
+import dashboard2 from "../assets/dashboard-icon-02.svg";
+import bag1 from "../assets/bag-icon-01.svg";
+import bag2 from "../assets/bag-icon-02.svg";
+import email1 from "../assets/email-icon-01.svg";
+import email2 from "../assets/email-icon-02.svg";
+import deleteicon from "../assets/delete-icon-01.svg";
+import note1 from "../assets/note-icon-01.svg";
+import note2 from "../assets/note-icon-02.svg";
+import pen1 from "../assets/pen-icon-01.svg";
+import pen2 from "../assets/pen-icon-02.svg";
+import profile1 from "../assets/profile-icon-01.svg";
+import profile2 from "../assets/profile-icon-02.svg";
+import save1 from "../assets/save-icon-01.svg";
+import save2 from "../assets/save-icon-02.svg";
+import setting1 from "../assets/setting-icon-01.svg";
+import setting2 from "../assets/setting-icon-02.svg";
+import logout from "../assets/logout-icon-01.svg";
+import notification from "../assets/notification-icon.svg";
+import notification1 from "../assets/notification-icon1.svg";
+import notification2 from "../assets/notification-icon2.svg";
+import notification3 from "../assets/notification-icon3.svg";
+
+import menuopen from "../assets/menu-open.png";
+import menuclose from "../assets/menu-close.png";
+
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
+import logoutDelete from "../assets/logout-delete.svg";
+
+const Dashboard = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isNotif, setIsNotif] = useState(false);
+  const [activeItem, setActiveItem] = useState("Beranda");
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarActive(!isSidebarActive);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarActive(false);
+  };
+
+  const navItems = [
+    { name: "Beranda", icon1: profile1, icon2: profile2 },
+    { name: "Profil", icon1: note1, icon2: note2 },
+    { name: "Dokumen PDF", icon1: email1, icon2: email2 },
+  ];
+
+  const [showModal, setShowModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleDelete = () => {
+    setShowModal(true);
+  };
+
+  const confirmLogout = () => {
+    setShowModal(false);
+    console.log("user logged out");
+  };
+
+  return (
+    <>
+      <div className="dashboard-wrapper relative w-full flex items-start justify-between bg-[#f0f5f3] min-h-screen">
+        {/* SIDEBAR */}
+        <div
+          className={`sidebar bg-white shadow-lg pt-[30px] px-[20px] fixed top-0 left-0 h-screen w-[250px] z-50 overflow-y-auto ${isSidebarActive ? "active" : ""
+            }`}
+        >
+          <img
+            src={menuclose}
+            alt=""
+            onClick={closeSidebar}
+            className="w-[30px] h-[30px] absolute right-0 top-0 m-5 cursor-pointer z-20 flex lg:hidden"
+          />
+          <div className="logo w-full text-center mb-5 pb-5">
+            <a href="#">
+              <h2 className="text-4xl font-semibold tracking-wide">
+                Si<span className="text-[#339609]">TERA</span>
+              </h2>
+            </a>
+          </div>
+
+          <div className="admin-info text-center mb-20">
+            <img
+              src={user}
+              alt=""
+              className="w-[120px] h-[120px] mx-auto rounded-[50%]"
+            />
+            <div>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="user-name text-xl relative font-medium py-3 w-full"
+              >
+                Yoga
+                <ul
+                  className={`dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-60 bg-white rounded-md shadow-md p-5 space-y-3 translation-all duration-300 ease-in-out z-10 ${
+                    isOpen
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible translate-y-2"
+                  }`}
+                >
+                  <li>
+                    <a
+                      href="#"
+                      className="flex group items-center w-full gap-2"
+                    >
+                      <img src={setting1} alt="" className="w-[18px]" />
+                      <span className="text-lg group-hover:text[#3c8968] transition-colors duration-300">
+                        Beranda
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="flex group items-center w-full gap-2"
+                    >
+                      <img src={profile1} alt="" className="w-[18px]" />
+                      <span className="text-lg group-hover:text[#3c8968] transition-colors duration-300">
+                        Profil
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="flex group items-center w-full gap-2"
+                    >
+                      <img src={notification1} alt="" className="w-[18px]" />
+                      <span className="text-lg group-hover:text[#3c8968] transition-colors duration-300">
+                        Dokumen PDF
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </button>
+            </div>
+          </div>
+          {/* main navigation */}
+          <ul className="dashboard-main-nav mt-20">
+            <li>
+              <Link
+                to="/dashboard"
+                onClick={() => setActiveItem("Beranda")}
+                className={`flex items-center w-full gap-2 p-5 rounded-2xl ${
+                  activeItem === "Beranda" ? "active" : ""
+                }`}
+              >
+                <img
+                  src={dashboard1}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Beranda"
+                      ? "opacity-0 absolute"
+                      : "opacity-100 relative"
+                  }`}
+                />
+                <img
+                  src={dashboard2}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Beranda"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute"
+                  }`}
+                />
+                <span className="text-lg ps-2 font-medium">Beranda</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/profil"
+                onClick={() => setActiveItem("Profile")}
+                className={`flex items-center w-full gap-2 p-5 rounded-2xl ${
+                  activeItem === "Profile" ? "active" : ""
+                }`}
+              >
+                <img
+                  src={profile1}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Profile"
+                      ? "opacity-0 absolute"
+                      : "opacity-100 relative"
+                  }`}
+                />
+                <img
+                  src={profile2}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Profile"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute"
+                  }`}
+                />
+                <span className="text-lg ps-2 font-medium">Profil</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/dokumen"
+                onClick={() => setActiveItem("Dokumen")}
+                className={`flex items-center w-full gap-2 p-5 rounded-2xl ${
+                  activeItem === "Dokumen" ? "active" : ""
+                }`}
+              >
+                <img
+                  src={pen1}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Dokumen"
+                      ? "opacity-0 absolute"
+                      : "opacity-100 relative"
+                  }`}
+                />
+                <img
+                  src={pen2}
+                  alt=""
+                  className={`w-[18px] transition-opacity duration-300 ease-in-out ${
+                    activeItem === "Dokumen"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute"
+                  }`}
+                />
+                <span className="text-lg ps-2 font-medium">Dokumen</span>
+              </Link>
+            </li>
+            {/* <li>
+            <button
+              onClick={handleDelete}
+              className="flex items-center w-full p-5 rounded-2xl gap-2"
+            >
+              <img src={deleteicon} alt="" className="w-[18px]" />
+              <span className="text-left">Delete</span>
+            </button>
+          </li> */}
+          </ul>
+
+          {/* <div className="profile-complete-status py-8 px-5">
+            <h4 className="text-xl font-normal">87%</h4>
+            <div className="process-line"></div>
+            <p>Profile Complete</p>
+          </div> */}
+
+          <li>
+            <button
+              onClick={() => setShowLogoutModal(true)}
+              className="flex items-center w-full hover:text-red-500 duration-300 transition-colors gap-2 p-5 mt-10 rounded-2xl cursor-pointer"
+            >
+              <img src={logout} alt="" className="w-[18px]" />
+              <span className="text-lg">Keluar</span>
+            </button>
+          </li>
+
+          {/* LOGOUT MODAL */}
+          {showLogoutModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-12 rounded-xl text-center w-full max-w-xl mx-auto shadow-lg">
+                <div className="flex justify-center items-center w-full py-5">
+                  <img
+                    src={logoutDelete}
+                    alt=""
+                    className="w-[100px] h-[100px]"
+                  />
+                </div>
+                <h2 className="text-4xl font-semibold text-black mb-2">
+                  Are you sure?
+                </h2>
+                <p className="text-gray-500 mb-6 font-[300]">
+                  Are you sure to logout?{" "}
+                </p>
+                <div className="flex justify-center gap-6">
+                  <button
+                    onClick={() => {
+                      setShowLogoutModal(false);
+                    }}
+                    className="bg-[#2c6c50] hover:bg-[#d2f34c] hover:text-[#244034] transition-colors duration-300 text-white px-8 py-2 rounded-lg text-lg font-[500]"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={() => setShowLogoutModal(false)}
+                    className="text-[#2c6c50] hover:underline font-[500] text-lg"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="main bg-[#f0f5f3] min-h-screen w-full ml-[250px] pr-[250px] overflow-y-auto">
+          <div className="nav-main bg-[white] w-full h-[90px] flex items-center justify-end gap-4 z-[9]">
+            <img
+              src={menuopen}
+              alt=""
+              className="mr-auto w-[30px] h-[30px] cursor-pointer flex lg:hidden"
+              onClick={toggleSidebar}
+            />
+            <div className="w-[800px] ml-6 relative">
+              <h2 className="text-4xl font-semibold">Dashboard</h2>
+              <p>Manage your account here</p>
+            </div>
+            <form className="search-form w-[300px] mr-6 relative border-none sm:hidden lg:block">
+              <i className="fa-solid fa-magnifying-glass absolute top-[15px] left-4 text-black"></i>
+              <input
+                type="text"
+                placeholder="Search here..."
+                className="w-full px-10 rounded-full font-[300] bg-[rgba(0,0,0,.5)] text-[rgba(0,0,0,.5)] border-none shadow-none focus:outline-none pl-[45px] pr-[15px] h-[45px] text-base"
+              />
+            </form>
+            {/* NOTIFICATION */}
+            {/* <button
+              className="nav-notification relative cursor-pointer"
+              onClick={() => setIsNotif(!isNotif)}
+            >
+              <img src={notification} alt="" className="h-[25px] w-[25px]" />
+              <div className="badge-pill"></div>
+              <div
+                className={`absolute left-[-150px] top-[40px] text-start mt-2 w-[250px] bg-white rounded-xl shadow-md p-5 space-y-4 z-10 transition-all duration-300 ease-in-out ${
+                  isNotif
+                    ? "opacity-100 visible translate-y-0"
+                    : "opacity-0 invisible -translate-y-2"
+                }`}
+              >
+                <h3 className="font-semibold text-xl">Notificatoin</h3>
+                <ul className="list-none space-y-2">
+                  <li className="flex items-start relative notification-item">
+                    <img src={notification1} alt="" className="w-10 h-10" />
+                    <div className="ps-2">
+                      <h6 className="text-md text-black font-[500]">
+                        You have 3 new emails
+                      </h6>
+                      <span className="text-sm text-gray-500 font-[300]">
+                        3 hours ago
+                      </span>
+                    </div>
+                    <div className="badge-pill" style={{ top: "8px" }}></div>
+                  </li>
+                  <li className="flex items-start relative notification-item">
+                    <img src={notification2} alt="" className="w-10 h-10" />
+                    <div className="ps-2">
+                      <h6 className="text-md text-black font-[500]">
+                        You have 5 new emails
+                      </h6>
+                      <span className="text-sm text-gray-500 font-[300]">
+                        6 hours ago
+                      </span>
+                    </div>
+                    <div className="badge-pill" style={{ top: "8px" }}></div>
+                  </li>
+                  <li className="flex items-start relative notification-item">
+                    <img src={notification3} alt="" className="w-10 h-10" />
+                    <div className="ps-2">
+                      <h6 className="text-md text-black font-[500]">
+                        You have 7 new emails
+                      </h6>
+                      <span className="text-sm text-gray-500 font-[300]">
+                        9 hours ago
+                      </span>
+                    </div>
+                    <div className="badge-pill" style={{ top: "8px" }}></div>
+                  </li>
+                </ul>
+              </div>
+            </button>
+            <Link
+              to="/"
+              className="bg-[#3f634d] text-white hover:bg-[#d2f34c] hover:text-[#244034] py-3 px-6 text-md font-[500] rounded-full transition duration-300"
+              type="button"
+            >
+              Post
+            </Link> */}
+          </div>
+          {/* CONTENT */}
+          <div className="content w-full flex flex-col justify-between min-h-full">
+            <Outlet />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Dashboard;
