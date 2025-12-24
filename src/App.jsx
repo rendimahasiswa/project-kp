@@ -5,8 +5,6 @@ import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Beranda from "./pages/Beranda";
 import Profil from "./pages/Profil";
-import Dokumen from "./pages/Dokumen";
-import Content from "./pages/Content";
 import Register from "./pages/Register";
 import RegisterAdmin from "./pages/RegisterAdmin";
 import EditUsers from "./pages/EditUsers";
@@ -33,7 +31,6 @@ const router = createBrowserRouter([
       { path: "/dashboard/beranda", element: <Beranda /> },
       { path: "/dashboard/content", element: <Content /> },
       { path: "/dashboard/profil", element: <Profil /> },
-      { path: "/dashboard/dokumen", element: <Dokumen /> },
       { path: "/dashboard/editusers", element: <EditUsers /> },
       { path: "/dashboard/decrypt", element: <DecryptFile /> },
       { path: "/dashboard/upload", element: <Upload /> },
