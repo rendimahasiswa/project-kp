@@ -12,6 +12,7 @@ import Documents from "./pages/Documents";
 import Upload from "./pages/Upload";
 import DecryptFile from "./pages/DecryptFile";
 import DecryptedList from "./pages/DecryptedList";
+import Content from "./pages/Content";
 
 
 const router = createBrowserRouter([
@@ -27,9 +28,8 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard />,
     children: [
-      { path: "/dashboard", element: <Content /> },
+      { path: "/dashboard", element: <Content /> }, 
       { path: "/dashboard/beranda", element: <Beranda /> },
-      { path: "/dashboard/content", element: <Content /> },
       { path: "/dashboard/profil", element: <Profil /> },
       { path: "/dashboard/editusers", element: <EditUsers /> },
       { path: "/dashboard/decrypt", element: <DecryptFile /> },
